@@ -27,7 +27,7 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent className="pt-6">
         <div className="px-6 pb-6">
-          <h1 className="text-2xl font-black text-[#FF9F43] tracking-tight">Charisma</h1>
+          <h1 className="text-2xl font-black text-[#58CC02] tracking-tight">Magnetic</h1>
         </div>
         <SidebarGroup>
           <SidebarGroupContent>
@@ -40,12 +40,12 @@ export function AppSidebar() {
                       asChild
                       className={`py-4 px-5 rounded-xl text-base font-black tracking-wide ${
                         isActive
-                          ? "bg-[#FF9F43]/10 text-[#FF9F43]"
+                          ? "bg-[#58CC02]/10 text-[#58CC02]"
                           : ""
                       }`}
                     >
                       <Link to={item.url} data-testid={`nav-${item.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                        <item.icon className={`w-6 h-6 ${isActive ? "text-[#FF9F43]" : ""}`} />
+                        <item.icon className={`w-6 h-6 ${isActive ? "text-[#58CC02]" : ""}`} />
                         <span className="text-base font-black uppercase tracking-wide">{item.title}</span>
                       </Link>
                     </SidebarMenuButton>

@@ -42,22 +42,42 @@ const Training = () => {
     }
   };
 
-  if (!exerciseSet || exerciseSet.locked) {
+  if (!exerciseSet) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-6">
-        <div className="text-center">
-          <p className="text-6xl mb-4">🔒</p>
-          <h2 className="text-xl font-bold text-foreground mb-2">Locked</h2>
-          <p className="text-muted-foreground mb-6">
-            Complete the previous day to unlock this one.
-          </p>
-          <button
-            onClick={() => navigate("/")}
-            className="px-6 py-3 rounded-xl font-bold accent-gradient text-white"
-          >
-            Go Back
-          </button>
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 text-center">
+        <div className="w-24 h-24 bg-secondary rounded-3xl flex items-center justify-center text-5xl mb-6">
+          ❓
         </div>
+        <h1 className="text-3xl font-black mb-2">Not Found</h1>
+        <p className="text-muted-foreground text-lg mb-8 max-w-md">
+          The training day you're looking for doesn't exist.
+        </p>
+        <button 
+          onClick={() => navigate("/")}
+          className="bg-[#58CC02] hover:bg-[#46A302] text-white font-black px-8 py-4 rounded-2xl text-xl shadow-[0_4px_0_0_#46A302]"
+        >
+          BACK TO ROADMAP
+        </button>
+      </div>
+    );
+  }
+
+  if (exercises.length === 0) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 text-center">
+        <div className="w-24 h-24 rounded-3xl bg-[#58CC02] flex items-center justify-center text-5xl mb-8 shadow-[0_8px_0_0_#46A302]">
+          {exerciseSet.icon}
+        </div>
+        <h2 className="text-3xl font-black mb-4">Coming Soon!</h2>
+        <p className="text-xl text-muted-foreground font-bold mb-8 max-w-sm">
+          We're still crafting the perfect exercises for <strong>{exerciseSet.title}</strong>. Check back tomorrow!
+        </p>
+        <button
+          onClick={() => navigate("/")}
+          className="px-12 py-4 rounded-2xl font-black text-xl bg-[#58CC02] text-white shadow-[0_6px_0_0_#46A302]"
+        >
+          GO BACK
+        </button>
       </div>
     );
   }
@@ -91,14 +111,14 @@ const Training = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <p className="text-sm font-bold text-accent uppercase tracking-wider mb-1">
+            <p className="text-sm font-bold text-[#58CC02] uppercase tracking-wider mb-1">
               {exerciseSet.week}
             </p>
             <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-4">
               Day {exerciseSet.day}
             </p>
 
-            <div className="w-16 h-16 rounded-2xl accent-gradient flex items-center justify-center mb-6 text-3xl">
+            <div className="w-16 h-16 rounded-2xl bg-[#58CC02] flex items-center justify-center mb-6 text-3xl shadow-[0_4px_0_0_#46A302] text-white">
               {exerciseSet.icon}
             </div>
 
@@ -109,13 +129,13 @@ const Training = () => {
               {exerciseSet.subtitle}
             </p>
 
-            <div className="card-elevated p-6 mb-8">
+            <div className="bg-white dark:bg-card rounded-2xl p-6 mb-8 shadow-md border-b-4 border-gray-100">
               <p className="text-foreground font-medium leading-relaxed">
                 {exerciseSet.description}
               </p>
             </div>
 
-            <div className="flex items-center gap-3 mb-8 p-4 rounded-xl bg-accent/10 border border-accent/20">
+            <div className="flex items-center gap-3 mb-8 p-4 rounded-xl bg-[#58CC02]/10 border border-[#58CC02]/20">
               <span className="text-2xl">📝</span>
               <div>
                 <p className="font-bold text-foreground text-sm">
@@ -131,7 +151,7 @@ const Training = () => {
               onClick={() => setShowIntro(false)}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
-              className="w-full py-5 rounded-2xl font-black text-xl accent-gradient text-white shadow-xl animate-pulse-glow"
+              className="w-full py-5 rounded-2xl font-black text-xl bg-[#58CC02] text-white shadow-[0_6px_0_0_#46A302]"
             >
               START DAY {exerciseSet.day} →
             </motion.button>

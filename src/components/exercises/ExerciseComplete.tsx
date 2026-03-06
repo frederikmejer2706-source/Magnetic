@@ -43,11 +43,11 @@ const ExerciseComplete = ({
       <motion.h2
         className="text-3xl font-black text-foreground mb-2"
       >
-        {passed ? "Level Passed!" : "Try Again!"}
+        {passed ? "Day Complete!" : "Try Again!"}
       </motion.h2>
 
-      <motion.p className="text-muted-foreground font-medium mb-8">
-        {isDailyTry ? "Daily Challenge" : setTitle}
+      <motion.p className="text-muted-foreground font-bold mb-8">
+        {passed ? "You're becoming more magnetic every day." : setTitle}
       </motion.p>
 
       {isDailyTry && !passed && (
@@ -88,8 +88,8 @@ const ExerciseComplete = ({
         )}
         <motion.button
           onClick={() => navigate("/")}
-          className={`w-full py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 ${
-            passed ? "accent-gradient text-card-foreground shadow-lg" : "bg-secondary text-secondary-foreground"
+          className={`w-full py-4 rounded-2xl font-black text-lg flex items-center justify-center gap-2 ${
+            passed ? "bg-[#58CC02] text-white shadow-[0_4px_0_0_#46A302]" : "bg-secondary text-secondary-foreground"
           }`}
         >
           <Home className="w-5 h-5" /> {passed ? "CONTINUE" : "BACK TO PATH"}

@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 
-const STORAGE_KEY = "power-training-progress";
+const STORAGE_KEY = "magnetic-training-progress";
 
 export interface ProgressData {
   completedSets: number[];
@@ -55,5 +55,20 @@ export function useProgress() {
     localStorage.removeItem(STORAGE_KEY);
   }, []);
 
-  return { getProgress, saveProgress, completeSet, addXp, resetProgress };
+  const isSetUnlocked = useCallback((setId: number): boolean => {
+    const progress = getProgress();
+    if (setId === 1) return true;
+    
+    // Check if previous set is completed
+    return progress.completedSets.includes(setId - 1);
+  }, [getProgress]);
+
+  return { 
+    getProgress, 
+    saveProgress, 
+    completeSet, 
+    addXp, 
+    resetProgress, 
+    isSetUnlocked 
+  };
 }
