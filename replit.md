@@ -95,3 +95,4 @@ src/
 - Feb 2026: Expanded to 20 exercise sets with 4 difficulty levels (added True Master level)
 - Feb 2026: Added 3 new exercise types: open-answer, timed (with countdown), and matching (pair items)
 - Feb 2026: Populated full exercise content for all 20 sets with charisma/power training material
+- March 2026: Renamed app to "Magnetic" and cleared all exercise sets for new content. Fixed white screen issue on landing page when exercises are empty.

@@ -26,15 +26,17 @@ const Index = () => {
     4: { bg: "#9B59B6", shadow: "#7D3C98", label: "True Master" },
   };
 
+  const currentUnit = exerciseSets[0] || { title: "Unit 1", subtitle: "Magnetic Foundations" };
+
   return (
     <div className="min-h-full bg-[#F7F7F7] dark:bg-background text-foreground pb-24 font-['Nunito']">
       <div className="max-w-xl mx-auto px-6 py-8">
         <div className="relative mb-16">
-          <div className="bg-[#E67E22] rounded-3xl p-8 text-white shadow-[0_8px_0_0_#D35400] relative overflow-hidden group">
+          <div className="bg-[#58CC02] rounded-3xl p-8 text-white shadow-[0_8px_0_0_#46A302] relative overflow-hidden group">
             <div className="relative z-10 flex justify-between items-start gap-2 flex-wrap">
               <div>
-                <h2 className="text-2xl font-black uppercase tracking-wide opacity-90 mb-1">Unit 1</h2>
-                <p className="text-xl font-bold">Foundations of Charisma</p>
+                <h2 className="text-2xl font-black uppercase tracking-wide opacity-90 mb-1">{currentUnit.title}</h2>
+                <p className="text-xl font-bold">{currentUnit.subtitle}</p>
               </div>
               <button className="bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-2xl px-4 py-2 flex items-center gap-2 text-sm font-black uppercase transition-all">
                 <BookOpen className="w-4 h-4" /> GUIDEBOOK
@@ -46,7 +48,8 @@ const Index = () => {
 
         {difficultyGroups.map((group, groupIndex) => {
           const groupSets = exerciseSets.filter(s => group.sets.includes(s.id));
-          const colors = difficultyColors[group.level];
+          if (groupSets.length === 0) return null;
+          const colors = difficultyColors[group.level] || { bg: "#58CC02", shadow: "#46A302", label: "Beginner" };
 
           return (
             <div key={group.level}>
@@ -71,16 +74,16 @@ const Index = () => {
                   const hasExercises = set.exercises && set.exercises.length > 0;
                   const alignment = getAlignmentClass(globalIndex);
 
-                  const isNextToPlay = unlocked && !isCompleted && hasExercises && 
+                  const isNextToPlay = unlocked && !isCompleted && 
                     !groupSets.some(s => s.id < set.id && !progress.completedSets.includes(s.id) && isSetUnlocked(s.id));
 
                   const handleNodeClick = () => {
-                    if (isCompleted || unlocked) {
+                    if (hasExercises && (isCompleted || unlocked)) {
                       navigate(`/training/${set.id}`);
                     }
                   };
 
-                  const isClickable = isCompleted || unlocked;
+                  const isClickable = hasExercises && (isCompleted || unlocked);
 
                   return (
                     <div key={set.id} className={`flex ${alignment}`} data-testid={`node-exercise-${set.id}`}>

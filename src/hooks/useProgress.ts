@@ -51,7 +51,7 @@ export function useProgress() {
     const progress = getProgress();
 
     const group = difficultyGroups.find(g => g.sets.includes(setId));
-    if (!group) return false;
+    if (!group) return true; // Unlock by default if not found in any group to prevent crashes
 
     const isFirstInGroup = group.sets[0] === setId;
     if (isFirstInGroup) return true;
