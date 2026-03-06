@@ -38,8 +38,8 @@ export const difficultyGroups = [
 export const exerciseSets: ExerciseSet[] = [
   {
     id: 1,
-    title: "Unit 1",
-    subtitle: "Coming Soon",
+    title: "First Impressions",
+    subtitle: "Master the start",
     icon: "🎯",
     difficulty: 1,
     locked: false,
