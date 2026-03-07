@@ -25,8 +25,7 @@ export interface ExerciseSet {
 }
 
 export const difficultyGroups = [
-  { level: 1 as const, label: "First Impressions", sets: [1, 3, 4, 5] },
-  { level: 2 as const, label: "Advanced Foundations", sets: [6] },
+  { level: 1 as const, label: "First Impressions", sets: [1, 2, 3, 4, 5] },
 ];
 
 export const exerciseSets: ExerciseSet[] = [
@@ -51,8 +50,8 @@ export const exerciseSets: ExerciseSet[] = [
     ],
   },
   {
-    id: 3,
-    day: 3,
+    id: 2,
+    day: 2,
     week: "Week 1",
     title: "Add Touch",
     subtitle: "Greet every person",
@@ -61,7 +60,7 @@ export const exerciseSets: ExerciseSet[] = [
     description: "Greeting everyone creates an inclusive environment and signals high social value.",
     exercises: [
       {
-        id: "3-1",
+        id: "2-1",
         type: "multiple-choice",
         question: "When greeting a group, what is the best strategy?",
         options: ["Only greet the leader", "Briefly acknowledge everyone", "Wait for them to speak first"],
@@ -71,8 +70,8 @@ export const exerciseSets: ExerciseSet[] = [
     ],
   },
   {
-    id: 4,
-    day: 4,
+    id: 3,
+    day: 3,
     week: "Week 1",
     title: "Posture Audit",
     subtitle: "Own your space",
@@ -81,7 +80,7 @@ export const exerciseSets: ExerciseSet[] = [
     description: "Your posture affects your hormone levels and how others perceive your authority.",
     exercises: [
       {
-        id: "4-1",
+        id: "3-1",
         type: "scoring",
         question: "How much space do you typically take up in a meeting (1 = Minimal, 10 = Maximum)?",
         explanation: "High-status individuals tend to take up more space comfortably, signaling they are not threatened by their environment.",
@@ -89,8 +88,8 @@ export const exerciseSets: ExerciseSet[] = [
     ],
   },
   {
-    id: 5,
-    day: 5,
+    id: 4,
+    day: 4,
     week: "Week 1",
     title: "Eye Contact",
     subtitle: "Notice the color",
@@ -99,7 +98,7 @@ export const exerciseSets: ExerciseSet[] = [
     description: "Eye contact is the bridge of connection. Learn the 'eye color' rule for perfect timing.",
     exercises: [
       {
-        id: "5-1",
+        id: "4-1",
         type: "multiple-choice",
         question: "What is the 'Eye Color' rule for eye contact?",
         options: ["Stare until they look away", "Look long enough to notice their eye color", "Avoid looking at eyes directly"],
@@ -109,9 +108,9 @@ export const exerciseSets: ExerciseSet[] = [
     ],
   },
   {
-    id: 6,
-    day: 6,
-    week: "Week 2",
+    id: 5,
+    day: 5,
+    week: "Week 1",
     title: "Craft Your Answers",
     subtitle: "Open the door",
     icon: "🗣️",
@@ -119,7 +118,7 @@ export const exerciseSets: ExerciseSet[] = [
     description: "Stop giving autopilot answers. Learn to provide hooks that invite deeper conversation.",
     exercises: [
       {
-        id: "6-1",
+        id: "5-1",
         type: "word-picker",
         question: "Pick the 'hook' words in this charismatic answer to 'How was your weekend?': 'It was great, I finally tried that new jazz club downtown.'",
         words: ["It", "was", "great", "finally", "tried", "jazz", "club", "downtown"],

@@ -95,4 +95,4 @@ src/
 - Feb 2026: Expanded to 20 exercise sets with 4 difficulty levels (added True Master level)
 - Feb 2026: Added 3 new exercise types: open-answer, timed (with countdown), and matching (pair items)
 - Feb 2026: Populated full exercise content for all 20 sets with charisma/power training material
-- March 2026: Restructured roadmap into sections. "First Impressions" section contains Days 1, 3, 4, 5. Day 1 is "Be Better Than Good" (word-picker exercise). Removed original "First Impressions" day. Added "Advanced Foundations" section with Day 6 "Craft Your Answers".
+- March 2026: Restructured roadmap into a single "First Impressions" section with 5 sequential days. Day 1: "Be Better Than Good" (word-picker), Day 2: "Add Touch" (greeting), Day 3: "Posture Audit" (scoring), Day 4: "Eye Contact" (multiple-choice), Day 5: "Craft Your Answers" (word-picker). Removed Advanced Foundations section.
