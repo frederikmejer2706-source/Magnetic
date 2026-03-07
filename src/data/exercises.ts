@@ -25,7 +25,7 @@ export interface ExerciseSet {
 }
 
 export const difficultyGroups = [
-  { level: 1 as const, label: "First Impressions", sets: [1, 2, 3, 4, 5] },
+  { level: 1 as const, label: "First Impressions", sets: [1, 3, 4, 5] },
   { level: 2 as const, label: "Advanced Foundations", sets: [6] },
 ];
 
@@ -47,26 +47,6 @@ export const exerciseSets: ExerciseSet[] = [
         words: ["It", "was", "great", "finally", "tried", "jazz", "club", "downtown"],
         options: ["jazz", "club", "downtown"],
         explanation: "Specific nouns like 'jazz club' act as hooks that give the other person something easy to ask about next.",
-      }
-    ],
-  },
-  {
-    id: 2,
-    day: 2,
-    week: "Week 1",
-    title: "First Impressions",
-    subtitle: "Master the start",
-    icon: "🎯",
-    locked: true,
-    description: "Your first interaction sets the tone for everything that follows. Learn to project warmth and competence from the very first second.",
-    exercises: [
-      {
-        id: "2-1",
-        type: "multiple-choice",
-        question: "What is the most important element of a first impression?",
-        options: ["What you say", "How you look", "Your energy and body language"],
-        correctAnswer: 2,
-        explanation: "Studies show that non-verbal cues are processed much faster than verbal ones in the first few seconds of an encounter.",
       }
     ],
   },
