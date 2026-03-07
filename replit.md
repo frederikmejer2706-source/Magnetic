@@ -95,4 +95,4 @@ src/
 - Feb 2026: Expanded to 20 exercise sets with 4 difficulty levels (added True Master level)
 - Feb 2026: Added 3 new exercise types: open-answer, timed (with countdown), and matching (pair items)
 - Feb 2026: Populated full exercise content for all 20 sets with charisma/power training material
-- March 2026: Renamed app to "Magnetic" and cleared all exercise sets for new content. Fixed white screen issue on landing page by restoring `isSetUnlocked` hook. Updated UI with green #58CC02 branding and new progress bar style. Populated Week 1 exercises (Days 1-5).
+- March 2026: Restructured roadmap into sections using `difficultyGroups`. "First Impressions" now contains Days 1-5. Day 1 renamed to "Be Better Than Good" with the word-picker hook exercise. Previous Day 1 (First Impressions) moved to Day 2. Added Day 6 "Craft Your Answers" to a new "Advanced Foundations" section. Updated Index.tsx to support dynamic sections.

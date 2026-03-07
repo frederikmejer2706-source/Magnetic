@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import FloatingElements from "@/components/FloatingElements";
-import { exerciseSets } from "@/data/exercises";
+import { exerciseSets, difficultyGroups } from "@/data/exercises";
 import { useProgress } from "@/hooks/useProgress";
 import { Lock, CheckCircle2 } from "lucide-react";
 
@@ -98,81 +98,90 @@ const Index = () => {
 
       {/* Training path */}
       <section className="px-6 py-20 bg-[#F7F7F7] dark:bg-background">
-        <div className="max-w-2xl mx-auto text-center mb-12">
-          <h2 className="text-4xl font-black text-foreground mb-4">The Course</h2>
-          <div className="w-20 h-2 bg-[#58CC02] mx-auto rounded-full"></div>
-        </div>
         <div className="max-w-2xl mx-auto">
-          <div className="space-y-6">
-            {exerciseSets.map((set, i) => {
-              const isCompleted = progress.completedSets.includes(set.id);
-              const unlocked = isSetUnlocked(set.id);
-              const isNext = unlocked && !isCompleted;
-              const isLocked = !unlocked;
+          <div className="space-y-12">
+            {difficultyGroups.map((group) => (
+              <div key={group.level} className="space-y-6">
+                <div className="text-center mb-8">
+                  <h2 className="text-4xl font-black text-foreground mb-4">{group.label}</h2>
+                  <div className="w-20 h-2 bg-[#58CC02] mx-auto rounded-full"></div>
+                </div>
+                
+                <div className="space-y-6">
+                  {exerciseSets
+                    .filter((set) => group.sets.includes(set.id))
+                    .map((set, i) => {
+                      const isCompleted = progress.completedSets.includes(set.id);
+                      const unlocked = isSetUnlocked(set.id);
+                      const isNext = unlocked && !isCompleted;
+                      const isLocked = !unlocked;
 
-              return (
-                <motion.div
-                  key={set.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <button
-                    onClick={() => !isLocked && navigate(`/training/${set.id}`)}
-                    disabled={isLocked}
-                    className={`w-full text-left p-8 rounded-[2rem] border-b-[6px] transition-all duration-200 flex items-center gap-6 group active:translate-y-1 active:border-b-0 ${
-                      isCompleted
-                        ? "bg-white border-green-200 hover:border-green-300"
-                        : isNext
-                        ? "bg-white border-[#58CC02] shadow-xl scale-[1.02] ring-4 ring-[#58CC02]/10"
-                        : isLocked
-                        ? "bg-gray-50 border-gray-200 opacity-60 grayscale cursor-not-allowed"
-                        : "bg-white border-gray-200 hover:border-gray-300"
-                    }`}
-                  >
-                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-4xl shrink-0 transition-transform group-hover:scale-110 ${
-                      isLocked 
-                        ? "bg-gray-200" 
-                        : isCompleted 
-                        ? "bg-green-100 text-green-600 shadow-[0_4px_0_0_#dcfce7]" 
-                        : "bg-[#58CC02] shadow-[0_6px_0_0_#46A302] text-white"
-                    }`}>
-                      {isLocked ? <Lock className="w-8 h-8 text-gray-400" /> : set.icon}
-                    </div>
+                      return (
+                        <motion.div
+                          key={set.id}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: i * 0.1 }}
+                        >
+                          <button
+                            onClick={() => !isLocked && navigate(`/training/${set.id}`)}
+                            disabled={isLocked}
+                            className={`w-full text-left p-8 rounded-[2rem] border-b-[6px] transition-all duration-200 flex items-center gap-6 group active:translate-y-1 active:border-b-0 ${
+                              isCompleted
+                                ? "bg-white border-green-200 hover:border-green-300"
+                                : isNext
+                                ? "bg-white border-[#58CC02] shadow-xl scale-[1.02] ring-4 ring-[#58CC02]/10"
+                                : isLocked
+                                ? "bg-gray-50 border-gray-200 opacity-60 grayscale cursor-not-allowed"
+                                : "bg-white border-gray-200 hover:border-gray-300"
+                            }`}
+                          >
+                            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-4xl shrink-0 transition-transform group-hover:scale-110 ${
+                              isLocked 
+                                ? "bg-gray-200" 
+                                : isCompleted 
+                                ? "bg-green-100 text-green-600 shadow-[0_4px_0_0_#dcfce7]" 
+                                : "bg-[#58CC02] shadow-[0_6px_0_0_#46A302] text-white"
+                            }`}>
+                              {isLocked ? <Lock className="w-8 h-8 text-gray-400" /> : set.icon}
+                            </div>
 
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className={`text-sm font-black uppercase tracking-widest ${isLocked ? 'text-gray-400' : 'text-[#58CC02]'}`}>
-                          Day {set.day}
-                        </span>
-                        {isCompleted && (
-                          <div className="bg-[#58CC02] rounded-full p-1 shadow-sm">
-                            <CheckCircle2 className="w-4 h-4 text-white" />
-                          </div>
-                        )}
-                      </div>
-                      <h3 className="text-2xl font-black text-foreground leading-tight truncate">
-                        {set.title}
-                      </h3>
-                      <p className="text-muted-foreground text-lg font-bold truncate">
-                        {set.subtitle}
-                      </p>
-                    </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className={`text-sm font-black uppercase tracking-widest ${isLocked ? 'text-gray-400' : 'text-[#58CC02]'}`}>
+                                  Day {set.day}
+                                </span>
+                                {isCompleted && (
+                                  <div className="bg-[#58CC02] rounded-full p-1 shadow-sm">
+                                    <CheckCircle2 className="w-4 h-4 text-white" />
+                                  </div>
+                                )}
+                              </div>
+                              <h3 className="text-2xl font-black text-foreground leading-tight truncate">
+                                {set.title}
+                              </h3>
+                              <p className="text-muted-foreground text-lg font-bold truncate">
+                                {set.subtitle}
+                              </p>
+                            </div>
 
-                    {isNext && (
-                      <motion.span 
-                        animate={{ scale: [1, 1.05, 1] }}
-                        transition={{ repeat: Infinity, duration: 2 }}
-                        className="px-6 py-3 rounded-2xl bg-[#58CC02] text-sm font-black text-white shadow-[0_4px_0_0_#46A302] hidden sm:block"
-                      >
-                        START
-                      </motion.span>
-                    )}
-                  </button>
-                </motion.div>
-              );
-            })}
+                            {isNext && (
+                              <motion.span 
+                                animate={{ scale: [1, 1.05, 1] }}
+                                transition={{ repeat: Infinity, duration: 2 }}
+                                className="px-6 py-3 rounded-2xl bg-[#58CC02] text-sm font-black text-white shadow-[0_4px_0_0_#46A302] hidden sm:block"
+                              >
+                                START
+                              </motion.span>
+                            )}
+                          </button>
+                        </motion.div>
+                      );
+                    })}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
