@@ -85,12 +85,14 @@ const Training = () => {
   }
 
   if (completed) {
-    const passed = correctCount / exercises.length >= 0.5;
+    // Determine pass/fail status
+    const passed = exercises.length > 0 && correctCount / exercises.length >= 0.5;
     const mission = dayMissions[exerciseSet.day];
+    
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-6">
         <ExerciseComplete
-          setTitle={exerciseSet.title}
+          setTitle={`${exerciseSet.week} · Day ${exerciseSet.day}`}
           xpEarned={xpEarned}
           correctCount={correctCount}
           totalCount={exercises.length}
