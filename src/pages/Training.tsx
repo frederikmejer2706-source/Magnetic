@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { exerciseSets } from "@/data/exercises";
+import { dayMissions } from "@/data/missions";
 import { useProgress } from "@/hooks/useProgress";
 import ExerciseProgress from "@/components/exercises/ExerciseProgress";
 import MultipleChoiceExercise from "@/components/exercises/MultipleChoiceExercise";
@@ -52,7 +53,7 @@ const Training = () => {
         <p className="text-muted-foreground text-lg mb-8 max-w-md">
           The training day you're looking for doesn't exist.
         </p>
-        <button 
+        <button
           onClick={() => navigate("/")}
           className="bg-[#58CC02] hover:bg-[#46A302] text-white font-black px-8 py-4 rounded-2xl text-xl shadow-[0_4px_0_0_#46A302]"
         >
@@ -70,7 +71,8 @@ const Training = () => {
         </div>
         <h2 className="text-3xl font-black mb-4">Coming Soon!</h2>
         <p className="text-xl text-muted-foreground font-bold mb-8 max-w-sm">
-          We're still crafting the perfect exercises for <strong>{exerciseSet.title}</strong>. Check back tomorrow!
+          We're still crafting the perfect exercises for{" "}
+          <strong>{exerciseSet.title}</strong>. Check back tomorrow!
         </p>
         <button
           onClick={() => navigate("/")}
@@ -83,13 +85,19 @@ const Training = () => {
   }
 
   if (completed) {
+    // Determine pass/fail status
+    const passed = exercises.length > 0 && correctCount / exercises.length >= 0.5;
+    const mission = dayMissions[exerciseSet.day];
+    
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-6">
         <ExerciseComplete
-          setTitle={exerciseSet.title}
+          setTitle={`${exerciseSet.week} · Day ${exerciseSet.day}`}
           xpEarned={xpEarned}
           correctCount={correctCount}
           totalCount={exercises.length}
+          status={passed ? "passed" : "failed"}
+          mission={passed ? mission : undefined}
         />
       </div>
     );
