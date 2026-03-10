@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { exerciseSets } from "@/data/exercises";
+import { dayMissions } from "@/data/missions";
 import { useProgress } from "@/hooks/useProgress";
 import ExerciseProgress from "@/components/exercises/ExerciseProgress";
 import MultipleChoiceExercise from "@/components/exercises/MultipleChoiceExercise";
@@ -84,6 +85,8 @@ const Training = () => {
   }
 
   if (completed) {
+    const passed = correctCount / exercises.length >= 0.5;
+    const mission = dayMissions[exerciseSet.day];
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-6">
         <ExerciseComplete
@@ -91,6 +94,8 @@ const Training = () => {
           xpEarned={xpEarned}
           correctCount={correctCount}
           totalCount={exercises.length}
+          status={passed ? "passed" : "failed"}
+          mission={passed ? mission : undefined}
         />
       </div>
     );

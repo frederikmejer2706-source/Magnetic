@@ -1,7 +1,10 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 import Index from "./pages/Index";
 import Training from "./pages/Training";
+import Missions from "./pages/Missions";
 import NotFound from "./pages/NotFound";
 import Onboarding from "./pages/Onboarding";
 
@@ -12,13 +15,40 @@ const ProtectedHome = () => {
   return done ? <Index /> : <Navigate to="/onboarding" replace />;
 };
 
+const AppLayout = ({ children }: { children: React.ReactNode }) => (
+  <SidebarProvider>
+    <AppSidebar />
+    <main className="flex-1 overflow-auto">
+      <div className="p-2 md:hidden">
+        <SidebarTrigger />
+      </div>
+      {children}
+    </main>
+  </SidebarProvider>
+);
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<ProtectedHome />} />
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/training/:setId" element={<Training />} />
+        <Route
+          path="/"
+          element={
+            <AppLayout>
+              <ProtectedHome />
+            </AppLayout>
+          }
+        />
+        <Route
+          path="/missions"
+          element={
+            <AppLayout>
+              <Missions />
+            </AppLayout>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

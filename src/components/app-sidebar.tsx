@@ -9,10 +9,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { BookOpen, Laugh, Scroll, ShoppingBag, Medal, User } from "lucide-react";
+import { BookOpen, Target, Laugh, Scroll, ShoppingBag, Medal, User } from "lucide-react";
 
 const navItems = [
   { title: "MAIN COURSE", url: "/", icon: BookOpen },
+  { title: "MISSIONS", url: "/missions", icon: Target },
   { title: "JOKE MAKER", url: "/jokes", icon: Laugh },
   { title: "QUESTS", url: "/quests", icon: Scroll },
   { title: "SHOP", url: "/shop", icon: ShoppingBag },
