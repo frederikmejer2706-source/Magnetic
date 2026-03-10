@@ -5,6 +5,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import Index from "./pages/Index";
 import Training from "./pages/Training";
 import Missions from "./pages/Missions";
+import JokeMaker from "./pages/JokeMaker";
 import NotFound from "./pages/NotFound";
 import Onboarding from "./pages/Onboarding";
 
@@ -33,22 +34,9 @@ const App = () => (
       <Routes>
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/training/:setId" element={<Training />} />
-        <Route
-          path="/"
-          element={
-            <AppLayout>
-              <ProtectedHome />
-            </AppLayout>
-          }
-        />
-        <Route
-          path="/missions"
-          element={
-            <AppLayout>
-              <Missions />
-            </AppLayout>
-          }
-        />
+        <Route path="/" element={<AppLayout><ProtectedHome /></AppLayout>} />
+        <Route path="/missions" element={<AppLayout><Missions /></AppLayout>} />
+        <Route path="/jokes" element={<AppLayout><JokeMaker /></AppLayout>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
