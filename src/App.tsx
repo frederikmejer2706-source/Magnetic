@@ -6,6 +6,7 @@ import Index from "./pages/Index";
 import Training from "./pages/Training";
 import Missions from "./pages/Missions";
 import JokeMaker from "./pages/JokeMaker";
+import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 import Onboarding from "./pages/Onboarding";
 
@@ -37,6 +38,10 @@ const App = () => (
         <Route path="/" element={<AppLayout><ProtectedHome /></AppLayout>} />
         <Route path="/missions" element={<AppLayout><Missions /></AppLayout>} />
         <Route path="/jokes" element={<AppLayout><JokeMaker /></AppLayout>} />
+        <Route path="/quests" element={<AppLayout><ComingSoon title="Quests" /></AppLayout>} />
+        <Route path="/shop" element={<AppLayout><ComingSoon title="Shop" /></AppLayout>} />
+        <Route path="/leaderboard" element={<AppLayout><ComingSoon title="Leaderboard" /></AppLayout>} />
+        <Route path="/profile" element={<AppLayout><ComingSoon title="Profile" /></AppLayout>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

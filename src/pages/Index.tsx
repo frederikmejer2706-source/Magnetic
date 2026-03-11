@@ -3,7 +3,15 @@ import { useNavigate } from "react-router-dom";
 import FloatingElements from "@/components/FloatingElements";
 import { exerciseSets, difficultyGroups } from "@/data/exercises";
 import { useProgress } from "@/hooks/useProgress";
-import { Lock, CheckCircle2 } from "lucide-react";
+import { Lock, CheckCircle2, Clock } from "lucide-react";
+
+const comingSoonModules = [
+  { icon: "💪", title: "Confidence" },
+  { icon: "🎯", title: "Expert Conversation" },
+  { icon: "📖", title: "Storytelling" },
+  { icon: "👥", title: "Group Interactions" },
+  { icon: "😂", title: "Comedy" },
+];
 
 const Index = () => {
   const navigate = useNavigate();
@@ -17,8 +25,6 @@ const Index = () => {
     exerciseSets.find(
       (s) => isSetUnlocked(s.id) && !progress.completedSets.includes(s.id)
     )?.id || 1;
-
-  const firstSet = exerciseSets[0] || { title: "First Impressions", subtitle: "Master the start" };
 
   const handleStartTraining = () => {
     navigate(`/training/${nextSetId}`);
@@ -42,7 +48,7 @@ const Index = () => {
             <p className="text-xl md:text-2xl text-white/90 font-bold mb-10">
               Unstoppable presence. Natural influence.
             </p>
-            
+
             <motion.button
               onClick={handleStartTraining}
               whileHover={{ scale: 1.05 }}
@@ -84,7 +90,7 @@ const Index = () => {
               </p>
             </div>
           </div>
-          
+
           <div className="h-8 rounded-full bg-gray-100 overflow-hidden border-4 border-gray-100 relative">
             <motion.div
               className="h-full rounded-full bg-[#58CC02]"
@@ -106,7 +112,7 @@ const Index = () => {
                   <h2 className="text-4xl font-black text-foreground mb-4">{group.label}</h2>
                   <div className="w-20 h-2 bg-[#58CC02] mx-auto rounded-full"></div>
                 </div>
-                
+
                 <div className="space-y-6">
                   {exerciseSets
                     .filter((set) => group.sets.includes(set.id))
@@ -138,10 +144,10 @@ const Index = () => {
                             }`}
                           >
                             <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-4xl shrink-0 transition-transform group-hover:scale-110 ${
-                              isLocked 
-                                ? "bg-gray-200" 
-                                : isCompleted 
-                                ? "bg-green-100 text-green-600 shadow-[0_4px_0_0_#dcfce7]" 
+                              isLocked
+                                ? "bg-gray-200"
+                                : isCompleted
+                                ? "bg-green-100 text-green-600 shadow-[0_4px_0_0_#dcfce7]"
                                 : "bg-[#58CC02] shadow-[0_6px_0_0_#46A302] text-white"
                             }`}>
                               {isLocked ? <Lock className="w-8 h-8 text-gray-400" /> : set.icon}
@@ -167,7 +173,7 @@ const Index = () => {
                             </div>
 
                             {isNext && (
-                              <motion.span 
+                              <motion.span
                                 animate={{ scale: [1, 1.05, 1] }}
                                 transition={{ repeat: Infinity, duration: 2 }}
                                 className="px-6 py-3 rounded-2xl bg-[#58CC02] text-sm font-black text-white shadow-[0_4px_0_0_#46A302] hidden sm:block"
@@ -183,6 +189,50 @@ const Index = () => {
               </div>
             ))}
           </div>
+
+          {/* Coming Soon modules */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-16"
+          >
+            <div className="text-center mb-8">
+              <div className="flex items-center justify-center gap-3 mb-3">
+                <Clock className="w-6 h-6 text-muted-foreground" />
+                <h2 className="text-3xl font-black text-foreground">Coming Soon</h2>
+              </div>
+              <p className="text-muted-foreground font-bold text-lg">
+                More modules are on the way
+              </p>
+              <div className="w-20 h-2 bg-gray-300 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div className="space-y-4">
+              {comingSoonModules.map((module, i) => (
+                <motion.div
+                  key={module.title}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className="w-full p-6 rounded-[2rem] border-b-[6px] bg-gray-50 border-gray-200 opacity-60 grayscale flex items-center gap-6"
+                >
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-4xl shrink-0 bg-gray-200">
+                    {module.icon}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-black text-foreground">{module.title}</h3>
+                  </div>
+                  <span className="px-4 py-2 rounded-full bg-gray-200 text-gray-500 text-xs font-black uppercase tracking-wider">
+                    Soon
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
         </div>
       </section>
     </div>
