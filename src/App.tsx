@@ -5,6 +5,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import Index from "./pages/Index";
 import Training from "./pages/Training";
 import Missions from "./pages/Missions";
+import Favorites from "./pages/Favorites";
 import JokeMaker from "./pages/JokeMaker";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
@@ -37,6 +38,7 @@ const App = () => (
         <Route path="/training/:setId" element={<Training />} />
         <Route path="/" element={<AppLayout><ProtectedHome /></AppLayout>} />
         <Route path="/missions" element={<AppLayout><Missions /></AppLayout>} />
+        <Route path="/favorites" element={<AppLayout><Favorites /></AppLayout>} />
         <Route path="/jokes" element={<AppLayout><JokeMaker /></AppLayout>} />
         <Route path="/quests" element={<AppLayout><ComingSoon title="Quests" /></AppLayout>} />
         <Route path="/shop" element={<AppLayout><ComingSoon title="Shop" /></AppLayout>} />

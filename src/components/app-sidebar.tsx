@@ -9,11 +9,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { BookOpen, Target, Laugh, Scroll, ShoppingBag, Medal, User } from "lucide-react";
+import { BookOpen, Target, Heart, Laugh, Scroll, ShoppingBag, Medal, User } from "lucide-react";
 
 const navItems = [
   { title: "MAIN COURSE", url: "/", icon: BookOpen },
   { title: "MISSIONS", url: "/missions", icon: Target },
+  { title: "FAVOURITES", url: "/favorites", icon: Heart },
   { title: "JOKE MAKER", url: "/jokes", icon: Laugh },
   { title: "QUESTS", url: "/quests", icon: Scroll },
   { title: "SHOP", url: "/shop", icon: ShoppingBag },
@@ -40,9 +41,7 @@ export function AppSidebar() {
                     <SidebarMenuButton
                       asChild
                       className={`py-4 px-5 rounded-xl text-base font-black tracking-wide ${
-                        isActive
-                          ? "bg-[#58CC02]/10 text-[#58CC02]"
-                          : ""
+                        isActive ? "bg-[#58CC02]/10 text-[#58CC02]" : ""
                       }`}
                     >
                       <Link to={item.url} data-testid={`nav-${item.title.toLowerCase().replace(/\s+/g, '-')}`}>

@@ -6,21 +6,27 @@ import GoalPicker from "@/components/onboarding/GoalPicker";
 import SelfAssessment from "@/components/onboarding/SelfAssessment";
 import AccountCreation from "@/components/onboarding/AccountCreation";
 import NotificationPrompt from "@/components/onboarding/NotificationPrompt";
+import WhyIWantThis from "@/components/onboarding/WhyIWantThis";
 
 export type OnboardingData = {
   goal: string | null;
   answers: number[];
   email: string;
   name: string;
+  why: string;
 };
 
-const STEPS = ["welcome", "goal", "assessment", "account", "notifications"];
+const STEPS = ["welcome", "why", "goal", "assessment", "account", "notifications"];
 
 const Onboarding = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [data, setData] = useState<OnboardingData>({
-    goal: null, answers: [], email: "", name: "",
+    goal: null,
+    answers: [],
+    email: "",
+    name: "",
+    why: "",
   });
 
   const next = () => {
@@ -42,9 +48,12 @@ const Onboarding = () => {
       {step > 0 && (
         <div className="fixed top-6 left-0 right-0 z-50 flex justify-center gap-2">
           {STEPS.slice(1).map((_, i) => (
-            <div key={i} className={`h-1.5 rounded-full transition-all duration-300 ${
-              i < step ? "w-6 bg-accent" : "w-6 bg-border"
-            }`} />
+            <div
+              key={i}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i < step ? "w-6 bg-[#58CC02]" : "w-6 bg-border"
+              }`}
+            />
           ))}
         </div>
       )}
@@ -57,10 +66,11 @@ const Onboarding = () => {
           transition={{ duration: 0.35, ease: "easeOut" }}
         >
           {step === 0 && <WelcomeSplash onNext={next} />}
-          {step === 1 && <GoalPicker onNext={next} data={data} updateData={updateData} />}
-          {step === 2 && <SelfAssessment onNext={next} data={data} updateData={updateData} />}
-          {step === 3 && <AccountCreation onNext={next} data={data} updateData={updateData} />}
-          {step === 4 && <NotificationPrompt onNext={next} />}
+          {step === 1 && <WhyIWantThis onNext={next} data={data} updateData={updateData} />}
+          {step === 2 && <GoalPicker onNext={next} data={data} updateData={updateData} />}
+          {step === 3 && <SelfAssessment onNext={next} data={data} updateData={updateData} />}
+          {step === 4 && <AccountCreation onNext={next} data={data} updateData={updateData} />}
+          {step === 5 && <NotificationPrompt onNext={next} />}
         </motion.div>
       </AnimatePresence>
     </div>
