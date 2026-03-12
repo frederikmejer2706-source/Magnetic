@@ -10,6 +10,7 @@ import JokeMaker from "./pages/JokeMaker";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 import Onboarding from "./pages/Onboarding";
+import Profile from "./pages/Profile";
 
 const queryClient = new QueryClient();
 
@@ -43,7 +44,7 @@ const App = () => (
         <Route path="/quests" element={<AppLayout><ComingSoon title="Quests" /></AppLayout>} />
         <Route path="/shop" element={<AppLayout><ComingSoon title="Shop" /></AppLayout>} />
         <Route path="/leaderboard" element={<AppLayout><ComingSoon title="Leaderboard" /></AppLayout>} />
-        <Route path="/profile" element={<AppLayout><ComingSoon title="Profile" /></AppLayout>} />
+        <Route path="/profile" element={<AppLayout><Profile /></AppLayout>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
